@@ -1,4 +1,6 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:bmi_calculator/result.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,6 +12,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   double heightValue = 180;
+  int age = 26;
+  int weight = 60;
+  bool isMale = true;
 
   @override
   Widget build(BuildContext context) {
@@ -28,34 +33,48 @@ class _HomeScreenState extends State<HomeScreen> {
               spacing: 20,
               children: [
                 Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xFF30324C),
-                      borderRadius: BorderRadius.circular(15)
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.male, size: 100, color: Colors.white,),
-                        SizedBox(height: 10,),
-                        Text('Male', style: TextStyle(fontSize: 22, color: Color(0xFF8B8C9E)),)
-                      ],
+                  child: GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        isMale = true;
+                      });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: isMale? Color(0xFF333244) : Color(0xFF30324C),
+                        borderRadius: BorderRadius.circular(15)
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.male, size: 100, color: Colors.white,),
+                          SizedBox(height: 10,),
+                          Text('Male', style: TextStyle(fontSize: 22, color: Color(0xFF8B8C9E)),)
+                        ],
+                      ),
                     ),
                   ),
                 ),
                 Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Color(0xFF30324C),
-                        borderRadius: BorderRadius.circular(15)
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.female, size: 100, color: Colors.white,),
-                        SizedBox(height: 10,),
-                        Text('Female', style: TextStyle(fontSize: 22, color: Color(0xFF8B8C9E)),)
-                      ],
+                  child: GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        isMale = false;
+                      });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: isMale? Color(0xFF30324C) : Color(0xFF333244),
+                          borderRadius: BorderRadius.circular(15)
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.female, size: 100, color: Colors.white,),
+                          SizedBox(height: 10,),
+                          Text('Female', style: TextStyle(fontSize: 22, color: Color(0xFF8B8C9E)),)
+                        ],
+                      ),
                     ),
                   ),
                 )
@@ -114,29 +133,41 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Color(0xFF30324C),
                         borderRadius: BorderRadius.circular(15)
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      spacing: 10,
-                      children: [
-                        Text('Weight', style: TextStyle(fontSize: 22, color: Color(0xFF8B8C9E)),),
-                        Text('60', style: TextStyle(fontSize: 60, color: Colors.white),),
-                        Row(
-                          spacing: 10,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FloatingActionButton(
-                              onPressed: (){},
-                              mini: true,
-                              child: Icon(Icons.remove),
-                            ),
-                            FloatingActionButton(
-                              onPressed: (){},
-                              mini: true,
-                              child: Icon(Icons.add),
-                            ),
-                          ],
-                        )
-                      ],
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Weight', style: TextStyle(fontSize: 22, color: Color(0xFF8B8C9E)),),
+                          Text('$weight', style: TextStyle(fontSize: 60, color: Colors.white),),
+                          Row(
+                            spacing: 10,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FloatingActionButton(
+                                onPressed: (){
+                                  setState(() {
+                                    weight--;
+                                  });
+                                },
+                                mini: true,
+                                heroTag: 'weight--',
+                                child: Icon(Icons.remove),
+                              ),
+                              FloatingActionButton(
+                                onPressed: (){
+                                  setState(() {
+                                    weight++;
+                                  });
+                                },
+                                mini: true,
+                                heroTag: 'weight++',
+                                child: Icon(Icons.add),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -146,29 +177,41 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Color(0xFF30324C),
                         borderRadius: BorderRadius.circular(15)
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      spacing: 10,
-                      children: [
-                        Text('Age', style: TextStyle(fontSize: 22, color: Color(0xFF8B8C9E)),),
-                        Text('26', style: TextStyle(fontSize: 60, color: Colors.white),),
-                        Row(
-                          spacing: 10,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FloatingActionButton(
-                              onPressed: (){},
-                              mini: true,
-                              child: Icon(Icons.remove),
-                            ),
-                            FloatingActionButton(
-                              onPressed: (){},
-                              mini: true,
-                              child: Icon(Icons.add),
-                            ),
-                          ],
-                        )
-                      ],
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Age', style: TextStyle(fontSize: 22, color: Color(0xFF8B8C9E)),),
+                          Text('$age', style: TextStyle(fontSize: 60, color: Colors.white),),
+                          Row(
+                            spacing: 10,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FloatingActionButton(
+                                onPressed: (){
+                                  setState(() {
+                                    age--;
+                                  });
+                                },
+                                mini: true,
+                                heroTag: 'age--',
+                                child: Icon(Icons.remove),
+                              ),
+                              FloatingActionButton(
+                                onPressed: (){
+                                  setState(() {
+                                    age++;
+                                  });
+                                },
+                                mini: true,
+                                heroTag: 'age++',
+                                child: Icon(Icons.add),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 )
@@ -180,7 +223,18 @@ class _HomeScreenState extends State<HomeScreen> {
             width: double.infinity,
             color: Color(0xFFE83D67),
             child: MaterialButton(
-                onPressed: (){},
+                onPressed: (){
+                  double result = weight / pow(heightValue/100, 2);
+                  print(result);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ResultScreen(
+                        age: age,
+                        isMale: isMale,
+                        result: result,
+                      ))
+                  );
+                },
               child: Text(
                 'Calculate',
                 style: TextStyle(
