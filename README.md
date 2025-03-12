@@ -8,7 +8,7 @@ and provides feedback on their BMI category.
 - Input **gender, height (cm), weight (kg), and age**
 - Calculate **BMI result**
 - Show **BMI category**:
-    -  **Underweight** (BMI < 18.5)
-    -  **Normal weight** (18.5 – 24.9)
-    -  **Overweight** (BMI ≥ 25)
+    - 🟢 **Underweight** (BMI < 18.5)
+    - 🟡 **Normal weight** (18.5 – 24.9)
+    - 🟠 **Overweight** (BMI ≥ 25)
 - Simple and clean UI
