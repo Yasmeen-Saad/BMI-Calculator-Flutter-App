@@ -23,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Color(0xFF30324C),
         title: Text('BMI Calculator'),
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: Column(
         // spacing: 10,
